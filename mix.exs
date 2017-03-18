@@ -29,7 +29,8 @@ defmodule Messengyr.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc"},
+    [{:phoenix, "~> 1.3.0-rc", override: true},
+     {:guardian, "~> 0.14"},
      {:comeonin, "~> 3.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.2"},
