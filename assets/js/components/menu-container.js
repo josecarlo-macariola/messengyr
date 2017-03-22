@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
-import MenuMessage from './menu-message';
+import MenuMessage from './menu-message'; 
 
 class MenuContainer extends React.Component {
   render() {
@@ -14,7 +15,6 @@ class MenuContainer extends React.Component {
       );
     });
 
-		console.log(rooms);
     return (
       <div className="menu">
 
@@ -31,5 +31,21 @@ class MenuContainer extends React.Component {
     )
   }
 }
+
+MenuContainer.defaultProps = {
+  rooms: [],
+};
+
+// Create this function:
+const mapStateToProps = (state) => {
+  return {
+    rooms: state,
+  };
+};
+
+// And apply it on the component with "connect":
+MenuContainer = connect(
+  mapStateToProps,
+)(MenuContainer);
 
 export default MenuContainer;

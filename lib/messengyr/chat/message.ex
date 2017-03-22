@@ -1,8 +1,9 @@
 defmodule Messengyr.Chat.Message do
   use Ecto.Schema
 
-    alias Messengyr.Chat.Room
-    alias Messengyr.Accounts.User
+  alias Messengyr.Chat.Room
+  alias Messengyr.Accounts.User
+  
   schema "messages" do
     field :text, :string
 

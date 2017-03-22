@@ -29,5 +29,8 @@ class ChatContainer extends React.Component {
         )
     }
 }
+ChatContainer.defaultProps = {
+  messages: [],
+};
 
 export default ChatContainer;
