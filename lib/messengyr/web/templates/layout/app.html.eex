@@ -14,7 +14,6 @@
   <body class=<%= @conn.path_info %>>
     <div class="container">
 
-
       <%= render Messengyr.Web.LayoutView, "header.html", assigns %>
      	<!-- The rest should be the same: -->
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
