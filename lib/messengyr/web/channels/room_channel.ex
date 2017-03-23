@@ -5,8 +5,8 @@ defmodule Messengyr.Web.RoomChannel do
   alias Messengyr.Chat.Room
 
   def join("room:" <> room_id, _payload, socket) do
-    me = socket.assigns.current_user
 
+    me = socket.assigns.current_user
     case Chat.get_room(room_id) do
       # Make sure that we get a room struct (and not nil)
       %Room{} = room ->
@@ -18,6 +18,16 @@ defmodule Messengyr.Web.RoomChannel do
       _ -> {:error, %{reason: "This room doesn't exist!"}}
     end
   end
+
+
+  def join("room:lobby", payload, socket) do
+    if authorized?(payload) do
+      {:ok, socket}
+    else
+      {:error, %{reason: "unauthorized"}}
+    end
+  end
+
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client

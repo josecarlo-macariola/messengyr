@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import MenuMessage from './menu-message'; 
+import MenuMessage from './menu-message';
 import { setRooms, selectRoom, addRoom } from '../actions';
 
 import socket from "../socket";
@@ -22,9 +22,9 @@ let getRoomChannel = (roomId) => {
 }
 
 class MenuContainer extends React.Component {
-  
+
     componentDidMount() {
-        fetch('/api/rooms', { 
+        fetch('/api/rooms', {
           headers: {
             "Authorization": "Bearer " + window.jwtToken,
           },
@@ -35,7 +35,7 @@ class MenuContainer extends React.Component {
         .then((response) => {
 
             let rooms = response.rooms;
-            
+
             rooms.forEach((room) => {
               room.channel = getRoomChannel(room.id);
             });
@@ -115,7 +115,7 @@ class MenuContainer extends React.Component {
         </div>
 
         <ul>
-          {rooms} 
+          {rooms}
         </ul>
 
       </div>
@@ -133,12 +133,12 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   setRooms,
-  selectRoom, 
+  selectRoom,
    addRoom,
 };
 MenuContainer = connect(
   mapStateToProps,
-  mapDispatchToProps, 
+  mapDispatchToProps,
 )(MenuContainer);
 
 export default MenuContainer;

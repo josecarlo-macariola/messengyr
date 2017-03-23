@@ -18,26 +18,23 @@ defmodule Messengyr.Web.UserSocket do
   #
   # To deny connection, return `:error`.
   #
-  # See `Phoenix.Token` documentation for examples in
+  # See `Phoenix.Tok  en` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
-    {:ok, socket}
-  end
   def connect(%{"guardianToken" => jwt}, socket) do
-    # Decode the jtw and get the user associated with it:
-    with {:ok, claims} <- Guardian.decode_and_verify(jwt),
-         {:ok, user}  <- from_token(claims["sub"])
-    do
-      # Assign the user to the socket!
-      {:ok, assign(socket, :current_user, user)}
-    else
-      _ -> :error
+      with {:ok, claims} <- Guardian.decode_and_verify(jwt),
+           {:ok, user} <- from_token(claims["sub"])
+      do
+        # Assign the user to the socket!
+        {:ok, assign(socket, :current_user, user)}
+      else
+        _ -> :error
+      end
     end
-  end 
 
   def connect(_params, _socket) do
     :error
   end
+
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-
 import ChatContainer from "./components/chat-container";
 import MenuContainer from "./components/menu-container";
 
